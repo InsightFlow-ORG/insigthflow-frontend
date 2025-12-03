@@ -1,0 +1,148 @@
+"use client";
+
+import Link from "next/link";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
+
+export function Navbar() {
+  return (
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur pl-16">
+      <div className="container flex h-16 items-center">
+        {/* Logo */}
+        <Link href="/" className="mr-6 flex items-center space-x-2">
+          <span className="font-bold text-xl">InsightFlow</span>
+        </Link>
+
+        {/* Navigation Menu */}
+        <NavigationMenu>
+          <NavigationMenuList>
+
+            {/* Dropdown con submenú */}
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Workspace</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  <ListItem href="/features/addWorkspace" title="Agregar un Workspace">
+                    Agrega un nuevo workspace
+                  </ListItem>
+                  <ListItem href="/features/seeWorkspaceByUser" title="Ver Workspace por usuario">
+                    Ver Workspace por usuario
+                  </ListItem>
+                  <ListItem href="/features/seeWorkspaceById" title="Ver Workspace por Id">
+                    ver workspace por id
+                  </ListItem>
+                  <ListItem href="/features/updateWorkspace" title="Actualizar Workspace">
+                    Actualiza tu workspace
+                  </ListItem>
+                  <ListItem href="/features/deleteWorkspace" title="Eliminar Workspace">
+                    Elimina un workspace
+                  </ListItem>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+
+            {/* Otro dropdown */}
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Documents</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  <ListItem href="" title="Agregar un Workspace">
+                    Agrega un nuevo workspace
+                  </ListItem>
+                  <ListItem href="" title="Ver Workspace por usuario">
+                    Ver Workspace por usuario
+                  </ListItem>
+                  <ListItem href="" title="Ver Workspace por Id">
+                    ver workspace por id
+                  </ListItem>
+                  <ListItem href="" title="Actualizar Workspace">
+                    Actualiza tu workspace
+                  </ListItem>
+                  <ListItem href="" title="Eliminar Workspace">
+                    Elimina un workspace
+                  </ListItem>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Task</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  <ListItem href="" title="Agregar un Workspace">
+                    Agrega un nuevo workspace
+                  </ListItem>
+                  <ListItem href="" title="Ver Workspace por usuario">
+                    Ver Workspace por usuario
+                  </ListItem>
+                  <ListItem href="" title="Ver Workspace por Id">
+                    ver workspace por id
+                  </ListItem>
+                  <ListItem href="" title="Actualizar Workspace">
+                    Actualiza tu workspace
+                  </ListItem>
+                  <ListItem href="" title="Eliminar Workspace">
+                    Elimina un workspace
+                  </ListItem>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+
+        {/* Botones a la derecha */}
+        <div className="ml-auto flex items-center gap-4">
+          <Link href="/login" className="text-sm font-medium hover:underline">
+            Iniciar Sesión
+          </Link>
+          <Link
+            href="/signup"
+            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+          >
+            Registrarse
+          </Link>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+// Componente helper para los items de lista
+const ListItem = ({
+  className,
+  title,
+  children,
+  href,
+}: {
+  className?: string;
+  title: string;
+  children: React.ReactNode;
+  href: string;
+}) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <Link
+          href={href}
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className
+          )}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </Link>
+      </NavigationMenuLink>
+    </li>
+  );
+};
