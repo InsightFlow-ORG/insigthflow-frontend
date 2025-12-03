@@ -29,67 +29,19 @@ export function Navbar() {
               <NavigationMenuTrigger>Workspace</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                  <ListItem href="/features/addWorkspace" title="Agregar un Workspace">
+                  <ListItem href="/workspace/addWorkspace" title="Agregar un Workspace">
                     Agrega un nuevo workspace
                   </ListItem>
-                  <ListItem href="/features/seeWorkspaceByUser" title="Ver Workspace por usuario">
+                  <ListItem href="/workspace/seeWorkspaceByUser" title="Ver Workspace por usuario">
                     Ver Workspace por usuario
                   </ListItem>
-                  <ListItem href="/features/seeWorkspaceById" title="Ver Workspace por Id">
+                  <ListItem href="/workspace/seeWorkspaceById" title="Ver Workspace por Id">
                     ver workspace por id
                   </ListItem>
-                  <ListItem href="/features/updateWorkspace" title="Actualizar Workspace">
+                  <ListItem href="/workspace/updateWorkspace" title="Actualizar Workspace">
                     Actualiza tu workspace
                   </ListItem>
-                  <ListItem href="/features/deleteWorkspace" title="Eliminar Workspace">
-                    Elimina un workspace
-                  </ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-
-            {/* Otro dropdown */}
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Documents</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                  <ListItem href="" title="Agregar un Workspace">
-                    Agrega un nuevo workspace
-                  </ListItem>
-                  <ListItem href="" title="Ver Workspace por usuario">
-                    Ver Workspace por usuario
-                  </ListItem>
-                  <ListItem href="" title="Ver Workspace por Id">
-                    ver workspace por id
-                  </ListItem>
-                  <ListItem href="" title="Actualizar Workspace">
-                    Actualiza tu workspace
-                  </ListItem>
-                  <ListItem href="" title="Eliminar Workspace">
-                    Elimina un workspace
-                  </ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Task</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                  <ListItem href="" title="Agregar un Workspace">
-                    Agrega un nuevo workspace
-                  </ListItem>
-                  <ListItem href="" title="Ver Workspace por usuario">
-                    Ver Workspace por usuario
-                  </ListItem>
-                  <ListItem href="" title="Ver Workspace por Id">
-                    ver workspace por id
-                  </ListItem>
-                  <ListItem href="" title="Actualizar Workspace">
-                    Actualiza tu workspace
-                  </ListItem>
-                  <ListItem href="" title="Eliminar Workspace">
+                  <ListItem href="/workspace/deleteWorkspace" title="Eliminar Workspace">
                     Elimina un workspace
                   </ListItem>
                 </ul>
