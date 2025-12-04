@@ -38,6 +38,9 @@ export function Navbar() {
                   <ListItem href="/workspace/getWorkspacesById" title="Ver Workspaces por ID">
                     Ver Workspace específico por su ID
                   </ListItem>
+                  <ListItem href="/workspace/getWorkspacesByUserId" title="Ver Workspaces por id de usuario">
+                    Ver Workspaces asociados a un usuario
+                  </ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>

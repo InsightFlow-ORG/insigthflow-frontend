@@ -44,7 +44,6 @@ export default function WorkspaceDetails({
     try {
       setLoading(true);
       const data = await workspaceApi.getWorkspaceById(workspaceId || "");
-      console.log(data);
       setWorkspace(data);
       setError(null);
     } catch (err) {

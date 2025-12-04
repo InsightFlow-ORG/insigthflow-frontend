@@ -9,6 +9,11 @@ export const workspaceApi = {
 
   getWorkspaceById: async (workspaceId: string) => {
     const response = await axiosInstance.get(`/workspace/workspace/${workspaceId}`);
+    return response.data;
+  },
+
+  getWorkspacesByUserId: async (userId: string) => {
+    const response = await axiosInstance.get(`/workspace/${userId}`);
     console.log(response.data);
     return response.data;
   },
