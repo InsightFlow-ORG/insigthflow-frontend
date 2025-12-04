@@ -1,3 +1,4 @@
+import { UpdateWorkspaceRequest } from "@/models/request/UpdateWorkspaceRequest";
 import { CreateWorkspaceRequest } from "../../models/request/CreateWorkspaceRequest";
 import axiosInstance from "../axios";
 
@@ -26,5 +27,14 @@ export const workspaceApi = {
     });
     return response.data;
   },
+
+  updateWorkspace: async (id: string, data: UpdateWorkspaceRequest) => {
+    const response = await axiosInstance.patch(`/workspace/${id}`, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  }
 }
 
