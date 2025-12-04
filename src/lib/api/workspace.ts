@@ -7,6 +7,12 @@ export const workspaceApi = {
     return response.data;
   },
 
+  getWorkspaceById: async (workspaceId: string) => {
+    const response = await axiosInstance.get(`/workspace/workspace/${workspaceId}`);
+    console.log(response.data);
+    return response.data;
+  },
+
   createWorkspace: async (data: CreateWorkspaceRequest) => {
     const response = await axiosInstance.post("/workspace", data, {
       headers: {

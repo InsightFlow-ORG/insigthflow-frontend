@@ -177,7 +177,7 @@ export default function WorkspacesTable() {
                   <tr key={workspace.id} className="hover:bg-gray-50 transition-colors">
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-lg bg-linear-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-semibold flex-shrink-0">
+                        <div className="h-10 w-10 rounded-lg bg-linear-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-semibold shrink-0">
                           {workspace.image ? (
                             // eslint-disable-next-line @next/next/no-img-element
                             <img 
