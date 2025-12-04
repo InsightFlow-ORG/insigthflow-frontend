@@ -32,17 +32,8 @@ export function Navbar() {
                   <ListItem href="/workspace/addWorkspace" title="Agregar un Workspace">
                     Agrega un nuevo workspace
                   </ListItem>
-                  <ListItem href="/workspace/seeWorkspaceByUser" title="Ver Workspace por usuario">
-                    Ver Workspace por usuario
-                  </ListItem>
-                  <ListItem href="/workspace/seeWorkspaceById" title="Ver Workspace por Id">
-                    ver workspace por id
-                  </ListItem>
-                  <ListItem href="/workspace/updateWorkspace" title="Actualizar Workspace">
-                    Actualiza tu workspace
-                  </ListItem>
-                  <ListItem href="/workspace/deleteWorkspace" title="Eliminar Workspace">
-                    Elimina un workspace
+                  <ListItem href="/workspace/getWorkspaces" title="Ver Workspaces">
+                    Ver Workspaces existentes
                   </ListItem>
                 </ul>
               </NavigationMenuContent>
