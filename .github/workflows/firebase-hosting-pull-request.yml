@@ -26,6 +26,13 @@ jobs:
       
       - name: Install dependencies
         run: pnpm install
+
+      - name: Import Hosting Environment Variables
+        run: |
+          echo "$HOSTING_ENV" > .env.ci
+          npx firebase-tools hosting:env:import .env.ci --project insightflow-frontend-fd042
+        env:
+          HOSTING_ENV: ${{ secrets.HOSTING_ENV }}
       
       - name: Build
         run: pnpm run build
