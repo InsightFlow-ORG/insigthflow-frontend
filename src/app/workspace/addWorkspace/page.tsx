@@ -1,3 +1,5 @@
+"use client";
+
 import { AddWorkspaceForm } from "@/components/workspace/AddWorkspaceForm";
 
 export default function Page() { 
