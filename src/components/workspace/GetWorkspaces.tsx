@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ArrowUpDown, Users, Calendar, Loader2 } from "lucide-react";
+import { ArrowUpDown, Users, Calendar, Loader2, Copy, Check } from "lucide-react";
 import { workspaceApi } from "@/lib/api/workspace";
 
-type SortKey = "name" | "members" | "createdAt" | null;
+type SortKey = "name" | "members" | "createdAt" | "id" | null;
 
 interface Member {
   userName: string;
@@ -27,6 +27,7 @@ export default function WorkspacesTable() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [copiedId, setCopiedId] = useState<string | null>(null);
   const [sortConfig, setSortConfig] = useState<{ key: SortKey; direction: "asc" | "desc" }>({ 
     key: null, 
     direction: "asc" 
@@ -51,7 +52,8 @@ export default function WorkspacesTable() {
   };
 
   const filteredData = workspaces.filter((workspace) =>
-    workspace.name.toLowerCase().includes(searchTerm.toLowerCase())
+    workspace.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    workspace.id.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const sortedData = [...filteredData].sort((a, b) => {
@@ -69,6 +71,14 @@ export default function WorkspacesTable() {
       return sortConfig.direction === "asc" ? aTime - bTime : bTime - aTime;
     }
 
+    if (sortConfig.key === "id") {
+      const aValue = a.id.toLowerCase();
+      const bValue = b.id.toLowerCase();
+      if (aValue < bValue) return sortConfig.direction === "asc" ? -1 : 1;
+      if (aValue > bValue) return sortConfig.direction === "asc" ? 1 : -1;
+      return 0;
+    }
+
     // fallback / default: compare names as strings
     const aValue = String(a.name).toLowerCase();
     const bValue = String(b.name).toLowerCase();
@@ -84,6 +94,16 @@ export default function WorkspacesTable() {
       direction:
         sortConfig.key === key && sortConfig.direction === "asc" ? "desc" : "asc",
     });
+  };
+
+  const copyToClipboard = async (id: string) => {
+    try {
+      await navigator.clipboard.writeText(id);
+      setCopiedId(id);
+      setTimeout(() => setCopiedId(null), 2000);
+    } catch (err) {
+      console.error('Error al copiar:', err);
+    }
   };
 
   if (loading) {
@@ -130,7 +150,7 @@ export default function WorkspacesTable() {
       <div className="mb-4">
         <input
           type="text"
-          placeholder="Buscar por nombre..."
+          placeholder="Buscar por nombre o ID..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-full max-w-sm"
@@ -142,6 +162,15 @@ export default function WorkspacesTable() {
           <table className="w-full border-collapse bg-white">
             <thead className="bg-gray-50">
               <tr>
+                <th className="px-6 py-3 text-left">
+                  <button
+                    onClick={() => handleSort("id")}
+                    className="flex items-center gap-2 font-medium text-gray-700 hover:text-gray-900"
+                  >
+                    ID
+                    <ArrowUpDown className="h-4 w-4" />
+                  </button>
+                </th>
                 <th className="px-6 py-3 text-left font-medium text-gray-700">
                   Workspace
                 </th>
@@ -175,6 +204,24 @@ export default function WorkspacesTable() {
               {sortedData.length > 0 ? (
                 sortedData.map((workspace) => (
                   <tr key={workspace.id} className="hover:bg-gray-50 transition-colors">
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-2">
+                        <code className="text-xs bg-gray-100 px-2 py-1 rounded font-mono text-gray-700">
+                          {workspace.id}
+                        </code>
+                        <button
+                          onClick={() => copyToClipboard(workspace.id)}
+                          className="text-gray-400 hover:text-gray-600 transition-colors"
+                          title="Copiar ID"
+                        >
+                          {copiedId === workspace.id ? (
+                            <Check className="h-4 w-4 text-green-600" />
+                          ) : (
+                            <Copy className="h-4 w-4" />
+                          )}
+                        </button>
+                      </div>
+                    </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
                         <div className="h-10 w-10 rounded-lg bg-linear-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-semibold shrink-0">
@@ -233,7 +280,7 @@ export default function WorkspacesTable() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan={5} className="px-6 py-12 text-center text-gray-500">
+                  <td colSpan={6} className="px-6 py-12 text-center text-gray-500">
                     No se encontraron resultados.
                   </td>
                 </tr>
