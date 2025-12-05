@@ -44,6 +44,9 @@ export function Navbar() {
                   <ListItem href="/workspace/updateWorkspace" title="Editar Workspace">
                     Editar un workspace existente
                   </ListItem>
+                  <ListItem href="/workspace/deleteWorkspace" title="Eliminar Workspace">
+                    Eliminar un workspace existente
+                  </ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>

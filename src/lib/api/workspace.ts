@@ -35,6 +35,12 @@ export const workspaceApi = {
       },
     });
     return response.data;
-  }
+  },
+
+  deleteWorkspace: async (workspaceId: string) => {
+    const response = await axiosInstance.delete(`/workspace/${workspaceId}`);
+    return response.data;
+  } 
+  
 }
 
