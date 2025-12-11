@@ -1,3 +1,5 @@
+"use client";
+
 import WorkspacesTable from "@/components/workspace/GetWorkspaces";
 
 export default function page() {

@@ -1,3 +1,5 @@
+"use client";
+
 import { UpdateWorkspaceForm } from "@/components/workspace/UpdateWorkspaceForm";
 
 export default function page() {
