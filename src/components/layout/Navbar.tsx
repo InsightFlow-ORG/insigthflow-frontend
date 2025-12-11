@@ -50,6 +50,28 @@ export function Navbar() {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Users</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  <ListItem href="/users/addUser" title="Agregar un Usuario">
+                    Agrega un nuevo usuario
+                  </ListItem>
+                  <ListItem href="/users/login" title="Iniciar Sesión">
+                    Iniciar sesión
+                  </ListItem>
+                  <ListItem href="/users/getUsers" title="Ver Usuarios">
+                    Ver usuarios existentes
+                  </ListItem>
+                  <ListItem href="/users/getUserById" title="Ver Usuario por ID">
+                    Ver usuario específico por su ID
+                  </ListItem>
+                  <ListItem href="/users/updateUser" title="Editar Usuario">
+                    Editar un usuario existente
+                  </ListItem>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
       </div>
