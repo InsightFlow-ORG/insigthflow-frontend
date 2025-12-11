@@ -24,6 +24,19 @@ export const userApi = {
 
     return response.data;
   },
+
+  getUserById: async (id: string) => {
+  const token = localStorage.getItem("token");
+
+  const response = await axiosInstance_1.get(`/api/Users/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+  },
+
 };
 
 
