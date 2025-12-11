@@ -57,6 +57,12 @@ export function Navbar() {
                   <ListItem href="/users/addUser" title="Agregar un Usuario">
                     Agrega un nuevo usuario
                   </ListItem>
+                  <ListItem href="/users/login" title="Iniciar Sesión">
+                    Iniciar sesión
+                  </ListItem>
+                  <ListItem href="/users/getUsers" title="Ver Usuarios">
+                    Ver usuarios existentes
+                  </ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
