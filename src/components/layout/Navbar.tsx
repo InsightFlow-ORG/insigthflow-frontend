@@ -66,6 +66,9 @@ export function Navbar() {
                   <ListItem href="/users/getUserById" title="Ver Usuario por ID">
                     Ver usuario específico por su ID
                   </ListItem>
+                  <ListItem href="/users/updateUser" title="Editar Usuario">
+                    Editar un usuario existente
+                  </ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>

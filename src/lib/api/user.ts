@@ -1,6 +1,7 @@
 import { axiosInstance_1 } from "../axios"; 
 import { CreateUserRequest } from "../../models/request/CreateUserRequest"; 
 import { LoginRequest } from "@/models/request/loginRequest";
+import { UpdateUserRequest } from "@/models/request/UpdateUserRequest";
 
 export const userApi = {
   createUser: async (data: CreateUserRequest) => {
@@ -36,6 +37,31 @@ export const userApi = {
 
   return response.data;
   },
+
+  updateUser: async (id: string, data: UpdateUserRequest) => {
+    const token = localStorage.getItem("token");
+
+    const response = await axiosInstance_1.patch(`/api/Users/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
+
+  deleteUser: async (id: string) => {
+  const token = localStorage.getItem("token");
+
+  const response = await axiosInstance_1.delete(`/api/Users/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+    return response.data;
+  },
+  
 
 };
 
