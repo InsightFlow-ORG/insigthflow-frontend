@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { userApi } from "@/lib/api/user";
 import { UpdateUserRequest } from "@/models/request/UpdateUserRequest";
-
+// Componente para actualizar la información de un usuario
 export default function UpdateUserForm() {
   const [id, setId] = useState("");
   const [userLoaded, setUserLoaded] = useState(false);

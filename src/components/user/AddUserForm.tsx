@@ -17,6 +17,8 @@ import { useState } from "react";
 import { CreateUserRequest } from "@/models/request/CreateUserRequest";
 import { userApi } from "@/lib/api/user";
 
+
+// Formulario para agregar un nuevo cliente
 function AddClientForm() {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -40,7 +42,7 @@ function AddClientForm() {
       [name]: value,
     }));
   };
-
+// Maneja el envío del formulario
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 

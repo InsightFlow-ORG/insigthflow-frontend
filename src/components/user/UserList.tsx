@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { userApi } from "@/lib/api/user";
 import { UserResponse } from "@/models/request/UserResponse";
 import { Card } from "@/components/ui/card";
-
+// Componente para listar usuarios
 export default function UserList() {
   const [users, setUsers] = useState<UserResponse[]>([]);
   const [loading, setLoading] = useState(true);

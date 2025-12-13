@@ -2,7 +2,7 @@ import { axiosInstance_1 } from "../axios";
 import { CreateUserRequest } from "../../models/request/CreateUserRequest"; 
 import { LoginRequest } from "@/models/request/loginRequest";
 import { UpdateUserRequest } from "@/models/request/UpdateUserRequest";
-
+// API de usuario
 export const userApi = {
   createUser: async (data: CreateUserRequest) => {
     const response = await axiosInstance_1.post("/api/Users/register", data);

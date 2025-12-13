@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { userApi } from "@/lib/api/user";
-
+// Componente para obtener un usuario por su ID
 export default function GetUserById() {
   const [id, setId] = useState("");
   const [user, setUser] = useState<any>(null);
