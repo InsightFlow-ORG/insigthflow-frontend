@@ -12,6 +12,7 @@ import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { workspaceApi } from "@/lib/api/workspace";
 
+// Componente para eliminar un workspace mediante su ID
 export default function DeleteWorkspace() {
   const [workspaceId, setWorkspaceId] = useState("");
   const [loading, setLoading] = useState(false);
@@ -20,6 +21,7 @@ export default function DeleteWorkspace() {
     message: string;
   } | null>(null);
 
+  // Maneja la eliminación del workspace
   const handleDelete = async () => {
     if (!workspaceId.trim()) {
       setResult({
@@ -63,6 +65,7 @@ export default function DeleteWorkspace() {
     }
   };
 
+  // Renderiza el componente de eliminación de workspace
   return (
     <div className="min-h-screen p-10 flex items-center justify-center bg-gray-50">
       <div className="w-full max-w-2xl">

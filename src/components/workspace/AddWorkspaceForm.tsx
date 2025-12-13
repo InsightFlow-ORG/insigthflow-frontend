@@ -17,6 +17,7 @@ import { useState } from "react";
 import { workspaceApi } from "@/lib/api/workspace";
 import { CreateWorkspaceRequest } from "@/models/request/CreateWorkspaceRequest";
 
+// Formulario para agregar un nuevo workspace
 export function AddWorkspaceForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -26,6 +27,7 @@ export function AddWorkspaceForm() {
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
 
+  // Maneja cambios en los campos del formulario
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -36,12 +38,14 @@ export function AddWorkspaceForm() {
     }));
   };
 
+  // Maneja la selección de archivo de imagen
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setImageFile(e.target.files[0]);
     }
   };
 
+  // Maneja el envío del formulario
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -81,6 +85,7 @@ export function AddWorkspaceForm() {
     }
   };
 
+  // Renderiza el formulario
   return (
     <div className="w-full max-w-md">
       <form onSubmit={handleSubmit}>

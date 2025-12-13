@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import UserList from "@/components/workspace/GetWorkspaceByUserId";
 import { useState } from "react";
 
+// Pagina para obtener los espacios de trabajo por User ID
 export default function Page() {
   const [formData, setFormData] = useState({
       userId: "",

@@ -12,7 +12,7 @@ import {
 } from "../ui/card";
 import { workspaceApi } from "../../lib/api/workspace";
 
-// Types
+// Inrerfaces
 interface WorkspaceMember {
   id: string;
   userName: string;
@@ -27,12 +27,12 @@ interface WorkspaceData {
   workspaceMembers: WorkspaceMember[];
 }
 
-// Main Component
 interface WorkspaceDetailsProps {
   workspaceId?: string;
   apiEndpoint?: string;
 }
 
+// Componente para mostrar los detalles de un workspace por su ID
 export default function WorkspaceDetails({
   workspaceId,
 }: WorkspaceDetailsProps) {
@@ -40,6 +40,7 @@ export default function WorkspaceDetails({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Función para obtener los detalles del workspace
   const fetchWorkspaceDetails = async () => {
     try {
       setLoading(true);
@@ -56,11 +57,13 @@ export default function WorkspaceDetails({
     }
   };
 
+  // useEffect para cargar los detalles cuando cambia el workspaceId
   useEffect(() => {
     fetchWorkspaceDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [workspaceId]);
 
+  // Funciones auxiliares para estilos de roles
   const getRoleBadgeColor = (role: string) => {
     switch (role.toLowerCase()) {
       case "owner":
@@ -74,6 +77,7 @@ export default function WorkspaceDetails({
     }
   };
 
+  // Iconos para roles
   const getRoleIcon = (role: string) => {
     if (role.toLowerCase() === "owner") {
       return <Crown className="h-3 w-3" />;
@@ -84,6 +88,7 @@ export default function WorkspaceDetails({
     return null;
   };
 
+  // Maneja los diferentes estados de carga, error y datos
   if (loading) {
     return (
       <Card className="w-full max-w-2xl">
@@ -101,6 +106,7 @@ export default function WorkspaceDetails({
     );
   }
 
+  // Maneja el estado de error
   if (error) {
     return (
       <Card className="w-full max-w-2xl">
@@ -130,6 +136,7 @@ export default function WorkspaceDetails({
     return classes.filter(Boolean).join(" ");
   }
 
+  // Renderiza los detalles del workspace
   return (
     <Card className="w-full max-w-2xl">
       <CardHeader className="border-b">

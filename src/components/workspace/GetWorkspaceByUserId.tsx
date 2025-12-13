@@ -25,11 +25,13 @@ interface UserListProps {
   userId?: string; // si filtras por workspace o usuario actual
 }
 
+// Componente para listar usuarios por userId
 export default function UserList({ userId }: UserListProps) {
   const [users, setUsers] = useState<UserData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Función para cargar usuarios
   const loadUsers = async () => {
     try {
       setLoading(true);
@@ -44,11 +46,13 @@ export default function UserList({ userId }: UserListProps) {
     }
   };
 
+  // useEffect para cargar usuarios al montar o cambiar userId
   useEffect(() => {
     if (userId) loadUsers();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
+  // Funciones auxiliares para estilos de roles
   const getRoleBadgeColor = (role: string) => {
     switch (role.toLowerCase()) {
       case "admin":
@@ -62,6 +66,7 @@ export default function UserList({ userId }: UserListProps) {
     }
   };
 
+  // Iconos para roles
   const getRoleIcon = (role: string) => {
     if (role.toLowerCase() === "admin") return <Crown className="h-3 w-3" />;
     if (role.toLowerCase() === "editor") return <Edit className="h-3 w-3" />;
@@ -85,8 +90,9 @@ export default function UserList({ userId }: UserListProps) {
       <p className="text-gray-600 text-sm">
         No se encontraron usuarios para este workspace.
       </p>
-    );
-
+    );  
+  
+  // Renderiza la lista de usuarios
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
       {users.map((user) => (

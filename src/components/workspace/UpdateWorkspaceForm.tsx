@@ -17,6 +17,7 @@ import { useState } from "react";
 import { workspaceApi } from "@/lib/api/workspace";
 import { UpdateWorkspaceRequest } from "@/models/request/UpdateWorkspaceRequest";
 
+// Formulario para actualizar un workspace existente
 export function UpdateWorkspaceForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -27,6 +28,7 @@ export function UpdateWorkspaceForm() {
   });
   const [imageFile, setImageFile] = useState<File | undefined>(undefined);
 
+  // Maneja los cambios en los campos de texto
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -37,12 +39,14 @@ export function UpdateWorkspaceForm() {
     }));
   };
 
+  // Maneja la selección de archivo de imagen
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setImageFile(e.target.files[0]);
     }
   };
 
+  // Maneja el envío del formulario
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -81,6 +85,7 @@ export function UpdateWorkspaceForm() {
     }
   };
 
+  // Renderiza el formulario de actualización de workspace
   return (
     <div className="w-full max-w-md">
       <form onSubmit={handleSubmit}>

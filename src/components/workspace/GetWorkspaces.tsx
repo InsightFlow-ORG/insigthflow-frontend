@@ -6,6 +6,7 @@ import { workspaceApi } from "@/lib/api/workspace";
 
 type SortKey = "name" | "members" | "createdAt" | "id" | null;
 
+// interfaces
 interface Member {
   userName: string;
   role: string;
@@ -22,6 +23,7 @@ interface Workspace {
   createdAt: string;
 }
 
+// Componente para mostrar la tabla de workspaces 
 export default function WorkspacesTable() {
   const [workspaces, setWorkspaces] = useState<Workspace[]>([]);
   const [loading, setLoading] = useState(true);
@@ -33,10 +35,12 @@ export default function WorkspacesTable() {
     direction: "asc" 
   });
 
+  // useEffect para cargar los workspaces al montar el componente
   useEffect(() => {
     fetchWorkspaces();
   }, []);
 
+  // Función para obtener los workspaces
   const fetchWorkspaces = async () => {
     try {
       setLoading(true);
@@ -51,11 +55,13 @@ export default function WorkspacesTable() {
     }
   };
 
+  // Filtrado y ordenamiento
   const filteredData = workspaces.filter((workspace) =>
     workspace.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     workspace.id.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Ordenamiento
   const sortedData = [...filteredData].sort((a, b) => {
     if (!sortConfig.key) return 0;
 
@@ -88,6 +94,7 @@ export default function WorkspacesTable() {
     return 0;
   });
 
+  // Manejar el clic en el encabezado para ordenar
   const handleSort = (key: SortKey) => {
     setSortConfig({
       key,
@@ -96,6 +103,7 @@ export default function WorkspacesTable() {
     });
   };
 
+  // Función para copiar al portapapeles
   const copyToClipboard = async (id: string) => {
     try {
       await navigator.clipboard.writeText(id);
@@ -138,6 +146,7 @@ export default function WorkspacesTable() {
     );
   }
 
+  // Renderizado principal
   return (
     <div className="w-full max-w-7xl mx-auto p-6">
       <div className="mb-6">
