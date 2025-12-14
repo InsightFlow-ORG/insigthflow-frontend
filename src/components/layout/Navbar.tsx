@@ -72,6 +72,25 @@ export function Navbar() {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Documents</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  <ListItem href="/documents/addDocument" title="Crear un Documento">
+                    Agregar un documento
+                  </ListItem>
+                  <ListItem href="/documents/findDocument" title="Visualizar un Documento">
+                    Visualizar un documento
+                  </ListItem>
+                  <ListItem href="/documents/updateDocument" title="Actualizar un Documento">
+                    Actualizar un documento
+                  </ListItem>
+                  <ListItem href="/documents/deleteDocument" title="Eliminar un Documento">
+                    Eliminar un documento
+                  </ListItem>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
       </div>
