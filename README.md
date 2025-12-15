@@ -89,7 +89,7 @@ Crear un archivo llamado **.env**, y pegar el siguiente contenido:
 NEXT_PUBLIC_API_URL=https://workspace-service-app-latest.onrender.com
 NEXT_PUBLIC_USERS_API_URL=https://userservice-j6zz.onrender.com
 Benjamin agregar URL
-Rey agregar URL
+NEXT_PUBLIC_TASKS_API_URL=https://insightflow-tasks.onrender.com
 ```
 
 ### 3. Instalar Dependencias
