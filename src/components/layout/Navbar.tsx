@@ -82,7 +82,7 @@ export function Navbar() {
                   <ListItem href="/documents/findDocument" title="Visualizar un Documento">
                     Visualizar un documento
                   </ListItem>
-                  <ListItem href="/documents/updateDocument" title="Actualizar un Documento">
+                  <ListItem href="/documents/editDocument" title="Actualizar un Documento">
                     Actualizar un documento
                   </ListItem>
                   <ListItem href="/documents/deleteDocument" title="Eliminar un Documento">

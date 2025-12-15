@@ -12,19 +12,52 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import TextareaAutosize from "react-textarea-autosize";
 import { useState } from "react"; 
 import { CreateDocumentRequest } from "@/models/request/CreateDocumentRequest";
-import { userApi } from "@/lib/api/user";
+import { documentApi } from "@/lib/api/document";
+
+// Modal Component
+function SuccessModal({ uuid, onClose }: { uuid: string; onClose: () => void }) {
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white p-6 rounded-lg shadow-xl max-w-md w-full mx-4">
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-green-600 text-xl text-center">
+              ✅ Documento Creado
+            </CardTitle>
+            <CardDescription className="text-center">
+              Tu documento se registró exitosamente
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="bg-gray-50 p-4 rounded-lg border">
+              <p className="text-sm font-medium text-gray-900 mb-2">UUID del Documento:</p>
+              <code className="text-xs bg-gray-100 p-2 rounded w-full block font-mono break-all">
+                {uuid}
+              </code>
+            </div>
+          </CardContent>
+          <CardFooter>
+            <Button onClick={onClose} className="w-full">
+              Cerrar
+            </Button>
+          </CardFooter>
+        </Card>
+      </div>
+    </div>
+  );
+}
 
 function AddDocumentForm() {
   const [isLoading, setIsLoading] = useState(false);
-
   const [formData, setFormData] = useState({
     title: "",
     icon: "",
     workspaceId: ""
   });
+  const [showModal, setShowModal] = useState(false);
+  const [createdUuid, setCreatedUuid] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -57,10 +90,13 @@ function AddDocumentForm() {
         WorkspaceId: formData.workspaceId,
       };
 
-      await userApi.createUser(createUserRequest);
+      const response = await documentApi.createDocument(createDocumentRequest);
 
-      alert("¡Cliente registrado exitosamente!");
+      // Guardar UUID y abrir modal
+      setCreatedUuid(response.uuid);
+      setShowModal(true);
 
+      // Reset del formulario
       setFormData({
         title: "",
         icon: "",
@@ -69,14 +105,19 @@ function AddDocumentForm() {
     } catch (error: any) {
       const errorMessage =
         error.response?.data?.message || error.message || "Error desconocido";
-      alert(`Error al registrar cliente: ${errorMessage}`);
+      alert(`Error al registrar documento: formato de uuid invalido`);
     } finally {
       setIsLoading(false);
     }
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+    setCreatedUuid("");
+  };
+
   return (
-    <div className="w-full max-w-md">
+    <div className="w-full max-w-md relative">
       <form onSubmit={handleSubmit}>
         <Card>
           <CardHeader>
@@ -91,39 +132,39 @@ function AddDocumentForm() {
           <CardContent>
             <FieldSet>
               <FieldGroup>
-  <Field>
-    <FieldLabel>Título</FieldLabel>
-    <Input
-      name="title"
-      value={formData.title}
-      onChange={handleChange}
-      placeholder="Ingrese el título"
-      required
-    />
-  </Field>
+                <Field>
+                  <FieldLabel>Título</FieldLabel>
+                  <Input
+                    name="title"
+                    value={formData.title}
+                    onChange={handleChange}
+                    placeholder="Ingrese el título"
+                    required
+                  />
+                </Field>
 
-  <Field>
-    <FieldLabel>Icono</FieldLabel>
-    <Input
-      name="icon"
-      value={formData.icon}
-      onChange={handleChange}
-      placeholder="Ingrese el icono"
-      required
-    />
-  </Field>
+                <Field>
+                  <FieldLabel>Icono</FieldLabel>
+                  <Input
+                    name="icon"
+                    value={formData.icon}
+                    onChange={handleChange}
+                    placeholder="Ingrese el icono"
+                    required
+                  />
+                </Field>
 
-  <Field>
-    <FieldLabel>WorkspaceId</FieldLabel>
-    <Input
-      name="WorkspaceId"
-      value={formData.workspaceId}
-      onChange={handleChange}
-      placeholder="Ingrese el Workspace Id"
-      required
-    />
-  </Field>
-</FieldGroup>
+                <Field>
+                  <FieldLabel>WorkspaceId</FieldLabel>
+                  <Input
+                    name="workspaceId"
+                    value={formData.workspaceId}
+                    onChange={handleChange}
+                    placeholder="Ingrese el Workspace Id"
+                    required
+                  />
+                </Field>
+              </FieldGroup>
             </FieldSet>
           </CardContent>
 
@@ -134,8 +175,13 @@ function AddDocumentForm() {
           </CardFooter>
         </Card>
       </form>
+
+      {/* Modal */}
+      {showModal && (
+        <SuccessModal uuid={createdUuid} onClose={closeModal} />
+      )}
     </div>
   );
 }
 
-export default AddDocumentForm;   
+export default AddDocumentForm;
