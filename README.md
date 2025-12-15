@@ -90,7 +90,7 @@ NEXT_PUBLIC_API_URL=https://workspace-service-app-latest.onrender.com
 NEXT_PUBLIC_USERS_API_URL=https://userservice-j6zz.onrender.com
 NEXT_PUBLIC_DOCUMENTS_API_URL=https://insightflow-documents-aivp.onrender.com
 Benjamin agregar URL
-Rey agregar URL
+NEXT_PUBLIC_TASKS_API_URL=https://insightflow-tasks.onrender.com
 ```
 
 ### 3. Instalar Dependencias
